@@ -1,22 +1,30 @@
+import iconDrizzle from "../assets/images/icon-drizzle.webp";
+import iconFog from "../assets/images/icon-fog.webp";
+import iconOvercast from "../assets/images/icon-overcast.webp";
+import iconPartlyCloudy from "../assets/images/icon-partly-cloudy.webp";
+import iconRain from "../assets/images/icon-rain.webp";
+import iconSnow from "../assets/images/icon-snow.webp";
+import iconStorm from "../assets/images/icon-storm.webp";
+import iconSunny from "../assets/images/icon-sunny.webp";
 class WeatherStats {
   #weatherIconMap = {
-    0: "icon-sunny.webp",
-    1: "icon-partly-cloudy.webp",
-    2: "icon-partly-cloudy.webp",
-    3: "icon-overcast.webp",
-    45: "icon-fog.webp",
-    48: "icon-fog.webp",
-    51: "icon-drizzle.webp",
-    53: "icon-drizzle.webp",
-    55: "icon-drizzle.webp",
-    61: "icon-rain.webp",
-    63: "icon-rain.webp",
-    65: "icon-rain.webp",
-    71: "icon-snow.webp",
-    73: "icon-snow.webp",
-    75: "icon-snow.webp",
-    95: "icon-storm.webp",
-    99: "icon-storm.webp",
+    0: iconSunny,
+    1: iconPartlyCloudy,
+    2: iconPartlyCloudy,
+    3: iconOvercast,
+    45: iconFog,
+    48: iconFog,
+    51: iconDrizzle,
+    53: iconDrizzle,
+    55: iconDrizzle,
+    61: iconRain,
+    63: iconRain,
+    65: iconRain,
+    71: iconSnow,
+    73: iconSnow,
+    75: iconSnow,
+    95: iconStorm,
+    99: iconStorm,
   };
   renderDataWeatherCard(data) {
     const weatherContent = document.getElementById("weatherContent");
@@ -27,9 +35,8 @@ class WeatherStats {
       month: "short",
       day: "numeric",
     });
-    const iconFile =
-      this.#weatherIconMap[data.current.weather_code] || `icon-sunny.webp`;
-    const iconPath = `../src/assets/images/${iconFile}`;
+    const iconPath =
+      this.#weatherIconMap[data.current.weather_code] || iconSunny;
     const markupDataWeatherCard = `
     <div>
       <h2
@@ -39,10 +46,10 @@ class WeatherStats {
         ${data.city}, ${data.locality || ""}
       </h2>
      <time
-      id="dateLabel"
-      datetime="${isoString}"
-      class="mt-1 text-sm text-neutral-200 sm:text-base"
-    >
+     id="dateLabel"
+     datetime="${isoString}"
+     class="mt-1 text-sm text-neutral-200 sm:text-base"
+   >
       ${normalDate}
     </time>
     </div>
@@ -81,10 +88,9 @@ class WeatherStats {
       const dayName = new Date(isoString).toLocaleDateString("en-US", {
         weekday: "short",
       });
-      const iconFile =
-        this.#weatherIconMap[data.daily.weather_code[i]] || `icon-sunny.webp`;
-      const iconPath = `../src/assets/images/${iconFile}`;
-      const altName = iconFile.split("-")[1].split(".")[0];
+      const iconPath =
+        this.#weatherIconMap[data.daily.weather_code[i]] || iconSunny;
+      const altName = iconPath.split("/").pop().split("-")[1].split(".")[0];
       el.innerHTML = `
                <time class="text-base font-medium text-neutral-0" datetime="${isoString}">${dayName}</time>
                 <img src="${iconPath}" alt="${altName}" class="h-8 w-8" />
@@ -106,10 +112,9 @@ class WeatherStats {
         weekday: "long",
       });
       if (!(dayFullName === day)) return;
-      const iconFile =
-        this.#weatherIconMap[data.hourly.weather_code[i]] || `icon-sunny.webp`;
-      const iconPath = `../src/assets/images/${iconFile}`;
-      const altName = iconFile.split("-")[1].split(".")[0];
+      const iconPath =
+        this.#weatherIconMap[data.hourly.weather_code[i]] || iconSunny;
+      const altName = iconPath.split("/").pop().split("-")[1].split(".")[0];
       const isoString = data.hourly.time[i];
       const formattedHour = new Date(isoString).toLocaleTimeString("en-US", {
         hour: "numeric",
