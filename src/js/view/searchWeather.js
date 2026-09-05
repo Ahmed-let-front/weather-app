@@ -1,4 +1,5 @@
 class SearchWeather {
+  
   #elements = {
     app: document.getElementById("app"),
   };
