@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Weather App" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" />
+    <title>Weather App</title>
+    <script type="module" crossorigin src="/weather App/assets/index-BL-tbPKI.js"></script>
+    <link rel="stylesheet" crossorigin href="/weather App/assets/index-D66Rc6Xl.css">
+  </head>
+
+  <body class="bg-neutral-900 font-sans text-neutral-0 antialiased">
+    <div class="mx-auto max-w-6xl px-5 py-8 sm:px-6">
+      <header class="flex items-center justify-between" id="headerOfPage">
+        <div class="flex items-center gap-2.5 w-fit">
+          <svg class="h-6 w-[130px] sm:h-7 sm:w-[150px]">
+            <use href="/weather%20App/assets/sprite-DvK6xIi1.svg#logo"></use>
+          </svg>
+        </div>
+
+        <div class="relative">
+          <button
+            id="unitsBtn"
+            disabled
+            type="button"
+            class="pill-trigger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <svg width="18" height="18" class="text-neutral-0">
+              <use href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-units"></use>
+            </svg>
+            <span>Units</span>
+            <svg
+              id="unitsChevron"
+              width="16"
+              height="16"
+              class="transition-transform"
+            >
+              <use
+                href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-chevron-down"
+              ></use>
+            </svg>
+          </button>
+
+          <ul
+            id="unitsPanel"
+            class="dropdown-panel hidden-item flex flex-col gap-1 duration-300"
+          >
+            <li>
+              <button
+                id="switchSystemBtn"
+                type="button"
+                class="dropdown-link w-full text-left"
+                data-system="imperial"
+              >
+                Switch to Imperial
+              </button>
+            </li>
+
+            <li><h2 class="dropdown-label px-3 py-1">Temperature</h2></li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="temperature_unit"
+                data-value="celsius"
+              >
+                <span>Celsius (°C)</span>
+                <svg class="check-icon" data-check="temp-celsius">
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="temperature_unit"
+                data-value="fahrenheit"
+              >
+                <span>Fahrenheit (°F)</span>
+                <svg
+                  class="check-icon hidden-item"
+                  data-check="temp-fahrenheit"
+                >
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+
+            <li><div class="dropdown-divider my-1"></div></li>
+
+            <li><h2 class="dropdown-label px-3 py-1">Wind Speed</h2></li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="wind_speed_unit"
+                data-value="kmh"
+              >
+                <span>km/h</span>
+                <svg class="check-icon" data-check="wind-kmh">
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="wind_speed_unit"
+                data-value="mph"
+              >
+                <span>mph</span>
+                <svg class="check-icon hidden-item" data-check="wind-mph">
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+
+            <li><div class="dropdown-divider my-1"></div></li>
+
+            <li><h2 class="dropdown-label px-3 py-1">Precipitation</h2></li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="precipitation_unit"
+                data-value="mm"
+              >
+                <span>Millimeters (mm)</span>
+                <svg class="check-icon" data-check="precip-mm">
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                class="dropdown-option w-full"
+                data-group="precipitation_unit"
+                data-value="inch"
+              >
+                <span>Inches (in)</span>
+                <svg class="check-icon hidden-item" data-check="precip-inch">
+                  <use
+                    href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-checkmark"
+                  ></use>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </header>
+      <main id="app">
+        <h1
+          class="mx-auto mt-10 max-w-2xl text-center font-display text-2xl font-bold leading-tight sm:mt-14 sm:text-[2.9rem]"
+        >
+          How&rsquo;s the sky looking today?
+        </h1>
+
+        <form
+          id="searchForm"
+          class="relative mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:mt-10 sm:flex-row"
+        >
+          <div class="relative flex-1">
+            <svg
+              class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-300"
+            >
+              <use href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-search"></use>
+            </svg>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search for a place..."
+              autocomplete="off"
+              aria-label="search Input"
+              class="search-input"
+            />
+
+            <ul
+              id="suggestionsPanel"
+              class="dropdown-panel left-0 hidden-item w-full"
+            >
+              <li>
+                <p>No search results found</p>
+              </li>
+            </ul>
+          </div>
+          <button type="submit" class="primary-btn">Search</button>
+        </form>
+
+        <div class="mt-8 grid grid-cols-1 gap-6 sm:mt-10 lg:grid-cols-3">
+          <div class="flex flex-col gap-10 lg:col-span-2">
+            <div
+              id="weatherCard"
+              class="relative flex min-h-[220px] flex-col justify-between overflow-hidden-item rounded-2xl border border-neutral-600 bg-gradient-to-br from-blue-500 to-blue-700 p-6 sm:p-8"
+            >
+              <div
+                id="weatherContent"
+                class="relative flex flex-col gap-8 sm:flex-row items-center sm:items-center sm:justify-between h-full"
+              >
+                <div>
+                  <h2
+                    id="cityName"
+                    class="font-display text-xl font-bold sm:text-2xl"
+                  >
+                    ----
+                  </h2>
+                  <p
+                    id="dateLabel"
+                    class="mt-1 text-sm text-neutral-200 sm:text-base"
+                  >
+                    -----
+                  </p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <svg width="56" height="56" class="text-yellow-300">
+                    <use href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-sun"></use>
+                  </svg>
+                  <output
+                    id="currentTemp"
+                    class="font-display text-6xl font-bold sm:text-7xl italic"
+                  >
+                    ---
+                  </output>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="grid grid-cols-2 gap-4 sm:grid-cols-4"
+              id="WeatherStats"
+            >
+              <div class="stat-card">
+                <p class="stat-label">Feels Like</p>
+                <p class="stat-value" id="feelsLike">--</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-label">Humidity</p>
+                <p class="stat-value" id="humidity">--</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-label">Wind</p>
+                <p class="stat-value" id="wind">--</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-label">Precipitation</p>
+                <p class="stat-value" id="precip">--</p>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="mb-4 text-base font-medium text-neutral-0">
+                Daily forecast
+              </h2>
+              <ul
+                id="dailyForecast"
+                class="flex gap-3 overflow-x-auto pb-4 sm:grid sm:grid-cols-4 sm:overflow-visible md:grid-cols-7"
+              >
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+                <li
+                  id="item-day"
+                  class="flex w-[10rem] min-h-20 shrink-0 flex-col items-center gap-3 rounded-xl border border-neutral-600 bg-neutral-800 px-3 py-4 text-center sm:w-auto sm:shrink"
+                ></li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="rounded-2xl border border-neutral-600 bg-neutral-800 p-5 sm:p-6 lg:max-h-[640px]"
+          >
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="text-lg font-medium text-neutral-0">
+                Hourly forecast
+              </h2>
+              <div class="relative">
+                <button
+                  id="dayBtn"
+                  disabled
+                  type="button"
+                  class="pill-trigger"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span id="dayLabel">-</span>
+                  <svg
+                    id="dayChevron"
+                    width="16"
+                    height="16"
+                    class="transition-transform rotate-180"
+                  >
+                    <use
+                      href="/weather%20App/assets/sprite-DvK6xIi1.svg#icon-chevron-down"
+                    ></use>
+                  </svg>
+                </button>
+                <ul
+                  id="dayPanel"
+                  class="dropdown-panel hidden-item w-40 duration-300"
+                >
+                  <li id="day-item" data-day="Monday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Monday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Tuesday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Tuesday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Wednesday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Wednesday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Thursday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Thursday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Friday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Friday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Saturday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Saturday
+                    </button>
+                  </li>
+                  <li id="day-item" data-day="Sunday">
+                    <button
+                      type="button"
+                      class="dropdown-link day-option w-full text-left"
+                    >
+                      Sunday
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <ul
+              id="hourlyList"
+              class="flex flex-col gap-3 max-h-[470px] overflow-y-auto pr-4"
+            ></ul>
+          </div>
+        </div>
+      </main>
+    </div>
+    <ul
+      id="popups"
+      class="fixed inset-x-4 top-4 z-50 flex flex-col gap-3 sm:inset-x-auto sm:right-4 sm:w-full sm:max-w-sm"
+    ></ul>
+  </body>
+</html>
