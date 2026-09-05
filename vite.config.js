@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [tailwindcss()],
-  base: "/weather-app",
+  base: "/weather-app/",
   build: {
     sourcemap: false,
     rollupOptions: {
