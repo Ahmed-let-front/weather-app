@@ -1,12 +1,12 @@
 # Frontend Mentor - Weather app
 
-![Design preview for the Weather app coding challenge](/design/preview.jpg)
+![Design preview for the Weather app coding challenge](./public/preview.jpg)
 
 ## Welcome! 👋
 
 ---
 
-## [live Demo](https://ahmed-let-front.github.io/weather-App/) 🚀
+## [live Demo](https://ahmed-let-front.github.io/weather-app/) 🚀
 
 ---
 
