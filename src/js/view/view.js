@@ -1,4 +1,4 @@
-import iconsSvg from "/images/sprite.svg";
+import iconsSvg from "../../assets/images/sprite.svg";
 class View {
   #parentEl = document.getElementById("app");
   #elements = {
