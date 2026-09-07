@@ -115,7 +115,7 @@ class View {
             <svg
               class="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-300"
             >
-              <use href="./src/assets/images/sprite.svg#icon-search"></use>
+              <use href="/images/sprite.svg#icon-search"></use>
             </svg>
             <input
               id="searchInput"
@@ -261,7 +261,7 @@ class View {
                     class="transition-transform rotate-180"
                   >
                     <use
-                      href="./src/assets/images/sprite.svg#icon-chevron-down"
+                      href="/images/sprite.svg#icon-chevron-down"
                     ></use>
                   </svg>
                 </button>

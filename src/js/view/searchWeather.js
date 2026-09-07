@@ -28,7 +28,10 @@ class SearchWeather {
     let markup = "";
     data.forEach((el, i) => {
       markup += `<li id="city-item" data-lat="${data[i].latitude}" data-lng="${data[i].longitude}" data-city="${el.country}" data-locality="${el.name}">
-                <button type="button" class="dropdown-link">${el.name}</button>
+                <button type="button" class="dropdown-link flex flex-col items-start">
+                  <span>${el.name}</span>
+                  <span class="font-light text-gray-400 text-xs">${el.country}</span>
+                </button>
                </li>
         `;
     });
