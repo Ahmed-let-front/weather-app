@@ -119,9 +119,9 @@ Describe how you used AI tools (if any) during this project. This helps demonstr
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Ahmed yasser](https://www.your-site.com)
+- Frontend Mentor - [@ahmed-let-front](https://www.frontendmentor.io/profile/yourusername)
+- Twitter - [@ahmed yasser](https://www.twitter.com/yourusername)
 
 **Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
